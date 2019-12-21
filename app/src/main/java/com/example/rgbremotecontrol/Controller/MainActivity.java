@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.example.rgbremotecontrol.Model.RemoteCode;
 import com.example.rgbremotecontrol.Model.RemoteCodes;
 import com.example.rgbremotecontrol.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,10 +29,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private List<RemoteCode> fRemoteCodes = new ArrayList<>();
     private RemoteCode mRemoteCode;
-    private Button mBrUp;
-    private Button mBrDown;
-    private Button mOn;
-    private Button mOff;
+    private FloatingActionButton mBrUp;
+    private FloatingActionButton mBrDown;
+    private FloatingActionButton mOn;
+    private FloatingActionButton mOff;
     private ConsumerIrManager mCIR;
 
     @Override
@@ -39,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         mCIR = (ConsumerIrManager) getSystemService(Context.CONSUMER_IR_SERVICE);
         setContentView(R.layout.activity_main);
-        mBrUp = (Button) findViewById(R.id.bUp);
-        mBrDown = (Button) findViewById(R.id.bDown);
-        mOn = (Button) findViewById(R.id.bOn);
-        mOff = (Button) findViewById(R.id.bOff);
+        mBrUp = (FloatingActionButton) findViewById(R.id.bUp);
+        mBrDown = (FloatingActionButton) findViewById(R.id.bDown);
+        mOn = (FloatingActionButton) findViewById(R.id.bOn);
+        mOff = (FloatingActionButton) findViewById(R.id.bOff);
         mBrUp.setTag(0);
         mBrDown.setTag(1);
         mOff.setTag(2);

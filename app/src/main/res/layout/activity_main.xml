@@ -6,52 +6,90 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Controller.MainActivity">
-
-<LinearLayout
-    android:layout_margin="5dp"
-
+<TextView
     android:layout_width="wrap_content"
-    android:layout_gravity="center"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:text="RGB Remote"
+    android:textSize="30dp"
+    android:textColor="@color/turquoise"
+    android:layout_gravity="center"/>
 
-    <Button
-        android:layout_margin="5dp"
-        android:id="@+id/bUp"
-        android:layout_width="67dp"
-        android:layout_height="47dp"
-        android:text="UP"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
 
-    <Button
-        android:id="@+id/bDown"
-        android:layout_width="67dp"
-        android:layout_height="48dp"
-        android:layout_margin="5dp"
-        android:text="DWN"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button" />
-    <Button
-        android:layout_margin="5dp"
-        android:id="@+id/bOff"
-        android:layout_width="67dp"
-        android:layout_height="47dp"
-        android:backgroundTint="#D80033"
-        android:text="OFF"
-        tools:layout_editor_absoluteY="65dp" />
-    <Button
-        android:layout_margin="5dp"
-        android:id="@+id/bOn"
-        android:layout_width="67dp"
-        android:layout_height="47dp"
-        android:backgroundTint="#8BC34A"
-        android:text="ON"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button3"
-        />
-    </LinearLayout>
+        android:columnCount="4"
+        android:orientation="horizontal"
+
+        >
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bUp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            app:backgroundTint="@color/turquoise"
+            app:srcCompat="@drawable/ic_arrow_up_small"
+
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bDown"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            app:backgroundTint="@color/turquoise"
+            app:srcCompat="@drawable/ic_arrow_down_small" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bOff"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="0"
+            android:backgroundTint="@color/colorAccent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bOn"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="I"
+            android:backgroundTint="#64DD17"
+            app:strokeColor="#FFFF" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bRed"
+
+            android:layout_margin="10dp"
+            android:gravity="center"
+            app:backgroundTint="#D50000"
+            app:icon="@drawable/ic_arrow_up_small" />
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bGreen"
+
+            android:layout_margin="10dp"
+            android:gravity="center"
+            app:backgroundTint="#00C853"
+            app:icon="@drawable/ic_arrow_up_small" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bBlue"
+
+            android:layout_margin="10dp"
+            android:gravity="center"
+            app:backgroundTint="#304FFE"
+            app:icon="@drawable/ic_arrow_up_small" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bWhite"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            app:backgroundTint="#FFFFFF"
+            />
+
+
+    </GridLayout>
 
 </LinearLayout>
