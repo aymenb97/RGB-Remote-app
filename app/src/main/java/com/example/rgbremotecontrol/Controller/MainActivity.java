@@ -19,6 +19,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.hardware.ConsumerIrManager;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,21 +32,26 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private List<RemoteCode> fRemoteCodes = new ArrayList<>();
     private RemoteCode mRemoteCode;
-    private FloatingActionButton mBrUp;
-    private FloatingActionButton mBrDown;
-    private FloatingActionButton mOn;
-    private FloatingActionButton mOff;
+    private ImageButton mBrUp;
+    private ImageButton mBrDown;
+    private ImageButton mOn;
+    private ImageButton mOff;
     private ConsumerIrManager mCIR;
-
+    private TextView mText;
+    private LinearLayout mContent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCIR = (ConsumerIrManager) getSystemService(Context.CONSUMER_IR_SERVICE);
         setContentView(R.layout.activity_main);
-        mBrUp = (FloatingActionButton) findViewById(R.id.bUp);
-        mBrDown = (FloatingActionButton) findViewById(R.id.bDown);
-        mOn = (FloatingActionButton) findViewById(R.id.bOn);
-        mOff = (FloatingActionButton) findViewById(R.id.bOff);
+        mBrUp = (ImageButton) findViewById(R.id.bUp);
+        mBrDown = (ImageButton) findViewById(R.id.bDown);
+        mOn = (ImageButton) findViewById(R.id.bOn);
+        mOff = (ImageButton) findViewById(R.id.bOff);
+        mText = (TextView) findViewById(R.id.ir_support);
+        mContent = (LinearLayout) findViewById(R.id.Content);
+        mText.setVisibility(View.GONE);
+        mContent.setVisibility(View.GONE);
         mBrUp.setTag(0);
         mBrDown.setTag(1);
         mOff.setTag(2);
@@ -52,6 +60,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBrDown.setOnClickListener(this);
         mOn.setOnClickListener(this);
         mOff.setOnClickListener(this);
+
+        if (mCIR.hasIrEmitter()) {
+            mContent.setVisibility(View.VISIBLE);
+            mText.setVisibility(View.GONE);
+        } else {
+            mText.setVisibility(View.VISIBLE);
+            mContent.setVisibility(View.GONE);
+        }
         try {
             JSONObject mObj = new JSONObject(loadIrFile());
             JSONArray m_jArray = mObj.getJSONArray("buttons");
@@ -62,10 +78,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 for (int j = 0; j < j_patterns.length(); j++) {
                     mCodes[j] = j_patterns.optInt(j);
-                    //("PATTERNS", Integer.toString(j_patterns.optInt(j)));
+
                 }
                 fRemoteCodes.add(new RemoteCode(mCodes, jo_inside.getString("name"), i));
-                //Log.d("OBJECTS", jo_inside.getString("name"));
+
 
             }
         } catch (JSONException e) {
