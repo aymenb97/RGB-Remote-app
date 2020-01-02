@@ -1,318 +1,335 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#0F0F0F"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".Controller.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/ir_support"
-        android:layout_width="wrap_content"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:visibility="visible"
-        android:text="Your Phone Doesn't have an IR blaster" />
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.rgbremotecontrol.ui.MainActivity" />
+    </data>
 
     <LinearLayout
-        android:id="@+id/Content"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#0F0F0F"
         android:gravity="center"
-        android:visibility="visible"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".ui.MainActivity">
+
+
+        <TextView
+            android:id="@+id/ir_support"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:visibility="visible"
+            android:text="Your Phone Doesn't have an IR blaster" />
 
         <LinearLayout
-            android:layout_width="400dp"
+            android:id="@+id/Content"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:visibility="visible"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_marginRight="5dp"
-                android:background="@drawable/layout_bg"
-                android:layout_width="wrap_content"
+                android:layout_width="400dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageButton
-            android:id="@+id/bUp"
+                <LinearLayout
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/layout_bg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:rotation="180"
-                    android:src="@drawable/button_outline_arrow"
-                    android:tint="#D3D3D3" />
+                    android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/bDown"
+                    <ImageButton
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:rotation="180"
+                        android:onClick="@{(view) -> viewmodel.emitIR(view,0)}"
+                        android:src="@drawable/button_outline_arrow"
+                        android:tint="#D3D3D3" />
+
+
+                    <ImageButton
+                        android:onClick="@{(view) -> viewmodel.emitIR(view,1)}"
+                        android:id="@+id/bDown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:src="@drawable/button_outline_arrow"
+                        android:tint="#D3D3D3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/layout_bg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:src="@drawable/button_outline_arrow"
-                    android:tint="#D3D3D3" />
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="@{(view) -> viewmodel.emitIR(view,2)}"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:src="@drawable/button_outline_off"
+                        android:tint="@color/colorAccent" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:onClick="@{(view) -> viewmodel.emitIR(view,3)}"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_outline_on"
+                        android:tint="#64DD17" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/layout_bg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_width="300dp"
+                android:gravity="center"
+                android:layout_height="400dp"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
 
-                <ImageButton
-                    android:id="@+id/bOff"
+                android:background="@drawable/ic_bg_2">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:src="@drawable/button_outline_off"
-                    android:tint="@color/colorAccent" />
+                    android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/bOn"
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:onClick="@{(view) -> viewmodel.emitIR(view,4)}"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#D50000" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:onClick="@{(view) -> viewmodel.emitIR(view,5)}"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#64DD17" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:onClick="@{(view) -> viewmodel.emitIR(view,6)}"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#304FFE" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:onClick="@{(view) -> viewmodel.emitIR(view,7)}"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#FFFFFF" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_outline_on"
-                    android:tint="#64DD17" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="300dp"
-            android:gravity="center"
-            android:layout_height="400dp"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#D50000" />
 
-            android:background="@drawable/ic_bg_2">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#17D6DD" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#2339B8" />
 
-                <ImageButton
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#64DD17" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#D50000" />
+                    android:orientation="horizontal">
 
-                <ImageButton
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#64DD17" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#64DD17" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#6200EA" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#64DD17" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#64DD17" />
+                    android:orientation="horizontal">
 
-                <ImageButton
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#64DD17" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#64DD17" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#AA00FF" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#64DD17" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#304FFE" />
+                    android:orientation="horizontal">
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#64DD17" />
 
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#FFFFFF" />
-            </LinearLayout>
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#64DD17" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#FF4081" />
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#D50000" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#17D6DD" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#2339B8" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#64DD17" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#64DD17" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#64DD17" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#6200EA" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#64DD17" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-                    android:background="#00000000"
-            android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#64DD17" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#64DD17" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-                    android:background="#00000000"
-            android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#AA00FF" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-                    android:background="#00000000"
-            android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#64DD17" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#64DD17" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-                    android:background="#00000000"
-            android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#64DD17" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#FF4081" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-                    android:background="#00000000"
-            android:gravity="center"
-                    android:src="@drawable/button_fill"
-                    android:tint="#FF4081" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="#00000000"
+                        android:gravity="center"
+                        android:src="@drawable/button_fill"
+                        android:tint="#FF4081" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>

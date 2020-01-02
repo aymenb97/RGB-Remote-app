@@ -1,25 +1,23 @@
-package com.example.rgbremotecontrol.Controller;
+package com.example.rgbremotecontrol.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.rgbremotecontrol.Model.RemoteCode;
-import com.example.rgbremotecontrol.Model.RemoteCodes;
 import com.example.rgbremotecontrol.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.rgbremotecontrol.databinding.ActivityMainBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.hardware.ConsumerIrManager;
-import android.widget.ImageButton;
+
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,13 +27,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
+    ActivityMainBinding binding;
+
     private List<RemoteCode> fRemoteCodes = new ArrayList<>();
     private RemoteCode mRemoteCode;
-    private ImageButton mBrUp;
-    private ImageButton mBrDown;
-    private ImageButton mOn;
-    private ImageButton mOff;
     private ConsumerIrManager mCIR;
     private TextView mText;
     private LinearLayout mContent;
@@ -43,23 +39,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCIR = (ConsumerIrManager) getSystemService(Context.CONSUMER_IR_SERVICE);
-        setContentView(R.layout.activity_main);
-        mBrUp = (ImageButton) findViewById(R.id.bUp);
-        mBrDown = (ImageButton) findViewById(R.id.bDown);
-        mOn = (ImageButton) findViewById(R.id.bOn);
-        mOff = (ImageButton) findViewById(R.id.bOff);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setViewmodel(this);
         mText = (TextView) findViewById(R.id.ir_support);
         mContent = (LinearLayout) findViewById(R.id.Content);
-        mText.setVisibility(View.GONE);
-        mContent.setVisibility(View.GONE);
-        mBrUp.setTag(0);
-        mBrDown.setTag(1);
-        mOff.setTag(2);
-        mOn.setTag(3);
-        mBrUp.setOnClickListener(this);
-        mBrDown.setOnClickListener(this);
-        mOn.setOnClickListener(this);
-        mOff.setOnClickListener(this);
+        mText.setVisibility(View.VISIBLE);
+        mContent.setVisibility(View.VISIBLE);
+
 
         if (mCIR.hasIrEmitter()) {
             mContent.setVisibility(View.VISIBLE);
@@ -106,8 +92,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return json;
     }
 
-    @Override
-    public void onClick(View v) {
-        mCIR.transmit(38000, fRemoteCodes.get((int) v.getTag()).getRemotePattern());
+
+    public void emitIR(View v, int index) {
+        mCIR.transmit(38000, fRemoteCodes.get(index).getRemotePattern());
     }
+
+
 }
